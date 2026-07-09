@@ -46,3 +46,24 @@ When executed:
 SSD → RAM → CPU Registers → Computation → RAM
 
 Variables primarily live in RAM and are temporarily loaded into CPU registers during computation.
+
+
+
+## Program vs Running Program
+
+A Python file on the SSD is just data.
+
+When the file is executed:
+
+1. The operating system creates a process.
+2. The program is loaded into RAM.
+3. Variables and program state are stored in RAM.
+4. The CPU executes instructions.
+
+If the computer loses power:
+
+- RAM is cleared.
+- The process disappears.
+- Variables are lost.
+
+The file on the SSD remains because storage is non-volatile.
