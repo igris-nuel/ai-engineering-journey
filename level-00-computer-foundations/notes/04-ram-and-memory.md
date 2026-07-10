@@ -297,3 +297,15 @@ x = 5
 y = x
 
 Both x and y refer to the same integer object.
+
+
+## Why AI Models Are Not Stored Permanently in RAM
+
+- RAM is limited and expensive.
+- RAM is volatile.
+- Large AI models may exceed available memory.
+- SSDs are cheaper, larger, and persistent.
+
+Modern AI systems continuously move data between:
+
+SSD ↔ RAM ↔ GPU Memory
