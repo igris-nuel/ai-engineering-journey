@@ -231,3 +231,14 @@ Bytes
 Bits
 ↓
 0 and 1
+
+
+## Mental Models
+
+### Binary is not about mathematics first.
+
+Binary is about engineering.
+
+Computers use binary because electronic circuits can reliably distinguish between two physical states (high and low voltage).
+
+Mathematics comes afterward as a convenient way to represent those two states.
