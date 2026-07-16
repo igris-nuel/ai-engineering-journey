@@ -284,7 +284,7 @@ Not necessarily.
 
 Modern interpreters use many optimization techniques.
 
-❌ "Python is not compiled."
+"Python is not compiled."
 
 Also incorrect.
 
@@ -292,34 +292,37 @@ CPython compiles source code into bytecode before executing it.
 
 The key difference is that this bytecode is not native machine code.
 
-Mental Model
+## Mental Model
+
 Go
 
-Source
-↓
+        Source
+        ↓
 
-Compiler
-↓
+        Compiler
+        ↓
 
-Machine Code
-↓
+        Machine Code
+        ↓
 
-CPU
+        CPU
+
+
 Python
 
-Source
-↓
+        Source
+          ↓
 
-Bytecode
-↓
+        Bytecode
+          ↓
 
-Python Virtual Machine
-↓
+        Python Virtual Machine
+          ↓
 
-Machine Instructions
-↓
+        Machine Instructions
+          ↓
 
-CPU
+        CPU
 
 This isn't the complete story, but it's the right mental model for now.
 
@@ -329,23 +332,23 @@ As an AI engineer, you'll often combine multiple languages.
 
 For example:
 
-Python
+                Python
 
-↓
+                  ↓
 
-PyTorch
+                PyTorch
 
-↓
+                  ↓
 
-C++
+                C++
 
-↓
+                 ↓
 
-CUDA
+                CUDA
 
-↓
+                 ↓
 
-GPU Machine Instructions
+                GPU Machine Instructions
 
 Understanding these layers helps explain:
 
@@ -367,4 +370,18 @@ Modern Python (CPython) uses both ideas: it compiles source code into bytecode, 
 
 
 
+### Abstraction Is a Chain, Not a Replacement
 
+Every abstraction layer depends on the one below it.
+
+Python depends on the Python Virtual Machine.
+
+The Python Virtual Machine depends on machine instructions.
+
+Machine instructions depend on CPU hardware.
+
+The CPU depends on transistors.
+
+Transistors depend on electrical signals.
+
+There is no magic—only layers of abstraction.
