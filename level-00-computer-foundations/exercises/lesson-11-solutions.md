@@ -69,7 +69,6 @@ Person B writes the performance-critical parts in C and exposes them to Python.
 
 Why will Person B's version often be dramatically faster, even though both are "using Python"?
 
-Don't answer with:
 
 In Python, code must pass through the Python Virtual Machine (PVM) during execution, which checks types and manages memory dynamically. This adds a lot of steps and slows down the CPU. Person B's C code, on the other hand, was sent through a compiler beforehand, meaning it was translated directly into raw CPU instructions. During the heavy matrix operations, the CPU skips the slow, line-by-line PVM translation and processes the C instructions directly at peak hardware speed
 
