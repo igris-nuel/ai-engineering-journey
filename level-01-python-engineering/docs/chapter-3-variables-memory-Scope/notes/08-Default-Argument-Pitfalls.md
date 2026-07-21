@@ -1,11 +1,11 @@
-Lesson 8 — Default Argument Pitfalls
+# Lesson 8 — Default Argument Pitfalls
 A Question
 
 Suppose I write:
 
-def add_item(item, items=[]):
-    items.append(item)
-    return items
+    def add_item(item, items=[]):
+        items.append(item)
+        return items
 
 Most beginners think this means:
 
@@ -25,8 +25,8 @@ Building the Mental Model
 
 Imagine Python reading your file.
 
-def greet():
-    print("Hello")
+    def greet():
+        print("Hello")
 
 When Python reaches this line, it doesn't just memorize some text.
 
@@ -51,9 +51,9 @@ Heap
 That function object lives until nothing references it.
 
 Now Add a Default Value
-def add_item(item, items=[]):
-    items.append(item)
-    return items
+    def add_item(item, items=[]):
+        items.append(item)
+        return items
 
 What happens?
 
@@ -69,22 +69,22 @@ Conceptually:
 
 Global Namespace
 
-add_item
-    |
-    |
-    ▼
+    add_item
+        |
+        |
+        ▼
 
-+------------------------------+
-| Function Object              |
-|                              |
-| code                          |
-| defaults -------------------+
-+------------------------------+
-                               |
-                               ▼
-                          +----------+
-                          |   []     |
-                          +----------+
+    +------------------------------+
+    | Function Object              |
+    |                              |
+    | code                         |
+    | defaults  ----------------+  |
+    +---------------------------|--+
+                                |
+                                ▼
+                            +----------+
+                            |   []     |
+                            +----------+
 
 Notice something important.
 
@@ -142,35 +142,35 @@ The Important Insight
 
 Many people think:
 
-Call Function
+    Call Function
 
-↓
+    ↓
 
-Create default value
+    Create default value
 
-↓
+    ↓
 
-Run
+    Run
 
 Reality:
 
-Define Function
+    Define Function
 
-↓
+    ↓
 
-Create default object
+    Create default object
 
-↓
+    ↓
 
-Store inside function object
+    Store inside function object
 
-↓
+    ↓
 
-Call Function
+    Call Function
 
-↓
+    ↓
 
-Reuse stored object
+    Reuse stored object
 
 That is the entire reason this "bug" exists.
 
@@ -187,11 +187,11 @@ def connect(timeout=30):
 
 Every function call would need to recreate
 
-30
+    30
 
 Then:
 
-def connect(name="localhost"):
+    def connect(name="localhost"):
 
 Recreate the string.
 
@@ -209,23 +209,23 @@ This is faster.
 
 It works perfectly for immutable objects.
 
-30
+    30
 
-"localhost"
+    "localhost"
 
-True
+    True
 
-None
+    None
 
-False
+    False
 
 Because they cannot change.
 
-So Why Are Mutable Objects Different?
+## So Why Are Mutable Objects Different?
 
 Suppose the default is
 
-[]
+    []
 
 Lists can mutate.
 
@@ -237,35 +237,35 @@ So every later call observes the mutation.
 
 Exactly like this:
 
-Function Object
+    Function Object
 
-        |
-        |
-        ▼
+            |
+            |
+            ▼
 
-+------------------+
-| []               |
-+------------------+
+    +------------------+
+    | []               |
+    +------------------+
 
-↓
+          ↓
 
-append("A")
+    append("A")
 
-↓
+         ↓
 
-+------------------+
-| ["A"]            |
-+------------------+
+    +------------------+
+    | ["A"]            |
+    +------------------+
 
-↓
+         ↓
 
-append("B")
+    append("B")
 
-↓
+         ↓
 
-+------------------+
-| ["A","B"]        |
-+------------------+
+    +------------------+
+    | ["A","B"]        |
+    +------------------+
 
 Nothing new was created.
 
@@ -275,31 +275,31 @@ This Connects Everything We've Learned
 
 Think about every lesson.
 
-Object Model
+### Object Model
 
 Objects live on the heap.
 
 ✓
 
-References
+### References
 
 Functions store references.
 
 ✓
 
-Mutability
+### Mutability
 
 Lists mutate.
 
 ✓
 
-Lifetime
+### Lifetime
 
 The list survives because the function object references it.
 
 ✓
 
-Namespaces
+### Namespaces
 
 The default isn't in the local namespace.
 
@@ -313,48 +313,48 @@ The Correct Pattern
 
 Instead of:
 
-def add_item(item, items=[]):
-    ...
+    def add_item(item, items=[]):
+        ...
 
 Use:
 
-def add_item(item, items=None):
-    if items is None:
-        items = []
+    def add_item(item, items=None):
+        if items is None:
+            items = []
 
-    items.append(item)
+        items.append(item)
 
-    return items
+        return items
 
 Now think through the execution.
 
 Each call that doesn't supply items does:
 
-items = None
+        items = None
 
-↓
+           ↓
 
-Create NEW list
+        Create NEW list
 
-↓
+          ↓
 
-Use it
+        Use it
 
-↓
+          ↓
 
-Function ends
+        Function ends
 
-↓
+          ↓
 
-List dies (unless returned or referenced elsewhere)
+        List dies (unless returned or referenced elsewhere)
 
 Every call gets a fresh object.
 
-Why AI Engineers Should Care
+## Why AI Engineers Should Care
 
 Imagine:
 
-def preprocess(batch=[]):
+    def preprocess(batch=[]):
 
 Thousands of training batches pass through.
 
@@ -365,15 +365,15 @@ preprocessing becomes nondeterministic
 experiments become impossible to reproduce
 debugging becomes extremely difficult
 
-In production ML systems, these kinds of bugs are among the hardest to track down because nothing crashes—the state simply "sticks" across calls.
+In production ML systems, these kinds of bugs are among the hardest to track down because nothing crashes the state simply "sticks" across calls.
 
 Understanding why this happens helps you avoid subtle bugs instead of memorizing a rule.
 
-Mental Model to Remember
+## Mental Model to Remember
 
 Whenever you see:
 
-def f(x=[]):
+    def f(x=[]):
 
 Don't think:
 
