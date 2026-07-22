@@ -1,15 +1,16 @@
-Exercises
+# Exercises
 
 As always, don't run the code. Reason from the mental model.
 
-Exercise 1 — Why Can Functions Be Passed Around?
+## Exercise 1 — Why Can Functions Be Passed Around?
 
 In your own words:
 
 Why can Python pass a function as an argument?
 What is actually being passed?
 Why doesn't passing a function automatically execute it?
-Exercise 2 — Function Object vs Function Call
+
+## Exercise 2 — Function Object vs Function Call
 
 Conceptually compare:
 
@@ -24,7 +25,8 @@ Explain:
 Which one refers to the function object?
 Which one creates an execution frame?
 Why are they fundamentally different operations?
-Exercise 3 — Returning Functions
+
+## Exercise 3 — Returning Functions
 
 Suppose a function returns another function.
 
@@ -33,7 +35,9 @@ Without writing code, explain:
 What is actually returned?
 Does the returned function execute immediately?
 Why can the caller store it and execute it much later?
-Exercise 4 — AI Engineering Thinking
+
+
+## Exercise 4 — AI Engineering Thinking
 
 Imagine you're designing an AI training framework.
 

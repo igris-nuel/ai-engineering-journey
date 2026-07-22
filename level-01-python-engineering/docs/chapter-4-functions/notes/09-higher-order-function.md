@@ -209,7 +209,7 @@ When a batch finishes...
 
 It calls:
 
-    log_metrics()
+     log_metrics()
 
 This is exactly how callback systems work.
 
@@ -217,9 +217,9 @@ Another Example
 
 Suppose a data pipeline lets you customize preprocessing.
 
-dataset.load(
-    transform=normalize
-)
+    dataset.load(
+        transform=normalize
+    )
 
 The dataset loader doesn't know how you want to process images.
 
@@ -228,35 +228,35 @@ It simply stores your function.
 Later...
 
 For every image:
-
-transform(image)
+        
+    transform(image)
 
 The pipeline becomes reusable because behavior is supplied from the outside.
 
-Why This Matters
+## Why This Matters
 
 This is one of Python's biggest strengths.
 
 Libraries like:
 
-NumPy
-Pandas
-PyTorch
-FastAPI
-Flask
-LangChain
-Hugging Face Transformers
+    NumPy
+    Pandas
+    PyTorch
+    FastAPI
+    Flask
+    LangChain
+    Hugging Face Transformers
 
 all rely heavily on higher-order functions.
 
 When you write:
 
-callbacks
-hooks
-middleware
-event handlers
-transformations
-schedulers
+    callbacks
+    hooks
+    middleware
+    event handlers
+    transformations
+    schedulers
 
 you're passing functions around as objects.
 
@@ -304,7 +304,7 @@ No.
 
 Passing:
 
-square
+    square
 
 means:
 
@@ -312,7 +312,7 @@ means:
 
 Calling:
 
-square()
+    square()
 
 means:
 
