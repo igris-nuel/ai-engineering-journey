@@ -261,11 +261,11 @@ Only pressing Play starts the movie.
 
 Similarly
 
-Function Object
+  Function Object
 
-≠
+  ≠
 
-Running Function
+  Running Function
 
 Calling the function is pressing Play.
 
@@ -302,34 +302,34 @@ If you don't distinguish definition from execution, many advanced Python pattern
         def greet():
             ...
 
-        ↓
+            ↓
 
         Create Function Object
 
-        ↓
+            ↓
 
         Bind name
 
-        ↓
+            ↓
 
         (wait...)
 
-        ↓
+            ↓
 
         greet()
 
-        ↓
+            ↓
 
         Create Frame
 
-        ↓
+            ↓
 
         Execute Code
 
-        ↓
+            ↓
 
         Destroy Frame
 
-        ↓
+            ↓
 
         Return
