@@ -72,19 +72,19 @@ The Numeric Hierarchy
 
 Conceptually:
 
-object
-   │
- number
-   │
-   ├── int
-   │      │
-   │      └── bool
-   │
-   ├── float
-   │
-   └── complex
+    object
+    │
+    number
+    │
+    ├── int
+    │      │
+    │      └── bool
+    │
+    ├── float
+    │
+    └── complex
 
-Don't worry about every detail yet.
+## Don't worry about every detail yet.
 
 The important relationship is
 
@@ -154,44 +154,45 @@ We're asking the bool object to express itself as an integer.
 Because it already is one.
 
 More Examples
-5 + True
+    5 + True
 
 Conceptually becomes
 
-5 + 1
+    5 + 1
 
 Result:
 
 6
-8 * False
+
+    8 * False
 
 Conceptually becomes
 
-8 * 0
+    8 * 0
 
 Result:
 
-0
-Why Python Did This
+    0
+## Why Python Did This
 
 Imagine counting successful predictions.
 
 Instead of writing
 
-correct = 0
+    correct = 0
 
-if prediction == answer:
-    correct += 1
+    if prediction == answer:
+        correct += 1
 
 you can write
 
-correct += prediction == answer
+    correct += prediction == answer
 
 Why?
 
 Because
 
-prediction == answer
+    prediction == answer
 
 produces either
 
@@ -207,67 +208,67 @@ which contribute
 
 This makes many algorithms elegant.
 
-AI Engineering Example
+## AI Engineering Example
 
 Suppose you're evaluating a classifier.
 
-predictions = [True, False, True, True]
+    predictions = [True, False, True, True]
 
 You want accuracy.
 
 Instead of
 
-count = 0
+    count = 0
 
-for p in predictions:
-    if p:
-        count += 1
+    for p in predictions:
+        if p:
+            count += 1
 
 Python allows
 
-accuracy = sum(predictions)
+    accuracy = sum(predictions)
 
 because
 
-True  = 1
-False = 0
+    True  = 1
+    False = 0
 
 If there are
 
-True
-False
-True
-True
+    True
+    False
+    True
+    True
 
 then
 
-1 + 0 + 1 + 1 = 3
+    1 + 0 + 1 + 1 = 3
 
 This idea appears constantly in machine learning libraries.
 
-Numeric Promotion
+## Numeric Promotion
 
 Python also knows how to combine different numeric types.
 
 Example:
 
-5 + 2.5
+    5 + 2.5
 
 Output:
 
-7.5
+    7.5
 
-What happened?
+## What happened?
 
 Python promoted the integer.
 
 Conceptually:
 
-int
+    int
 
-↓
+    ↓
 
-float
+    float
 
 because
 
@@ -277,39 +278,39 @@ but not the other way around.
 
 Another example
 
-3 + 4j
+    3 + 4j
 
 Output:
 
-(3+4j)
+    (3+4j)
 
 The integer becomes compatible with the more expressive numeric type.
 
 Python automatically promotes values when necessary.
 
-The Numeric Tower
+## The Numeric Tower
 
 Conceptually,
 
 Python prefers moving upward rather than downward.
 
-bool
+    bool
 
-↓
+    ↓
 
-int
+    int
 
-↓
+    ↓
 
-float
+    float
 
-↓
+    ↓
 
-complex
+    complex
 
 Each level can represent more kinds of numbers.
 
-Memory Model
+## Memory Model
 
 Consider
 
@@ -317,19 +318,19 @@ x = True
 
 Memory:
 
-x
-│
-▼
-True object
-│
-▼
-bool
-│
-▼
-int hierarchy
-│
-▼
-type
+    x
+    │
+    ▼
+    True object
+    │
+    ▼
+    bool
+    │
+    ▼
+    int hierarchy
+    │
+    ▼
+    type
 
 Even though
 
@@ -343,23 +344,23 @@ it is still a boolean object.
 
 The object keeps its identity.
 
-Important Distinction
+## Important Distinction
 
 These are equal:
 
-True == 1
+    True == 1
 
 Output:
 
-True
+    True
 
 But this:
 
-True is 1
+    True is 1
 
 Output:
 
-False
+    False
 
 Why?
 
@@ -377,7 +378,7 @@ We've already studied this distinction in Chapter 2.
 
 This lesson connects back beautifully to it.
 
-Best Practice
+## Best Practice
 
 Just because Python allows
 
@@ -395,13 +396,13 @@ is elegant.
 
 This:
 
-result = True * 8 + False
+    result = True * 8 + False
 
 is probably confusing.
 
 Use numeric booleans when they naturally express the problem.
 
-Mental Model
+## Mental Model
 
 Don't think:
 
