@@ -225,11 +225,11 @@ Chapter 3 — Variables, Memory & Scope ✅
 
  Chapter 4 — Functions ✅
 
-▶ Chapter 5 — Variables, Types & Memory
+ Chapter 5 — Variables, Types & Memory ✅
 
-Chapter 6 — Control Flow
+Chapter 6 — Control Flow ✅
 
-Chapter 7 — Built-in Data Structures
+Chapter 7 — Built-in Data Structures ▶
 
 Chapter 8 — Iteration
 
