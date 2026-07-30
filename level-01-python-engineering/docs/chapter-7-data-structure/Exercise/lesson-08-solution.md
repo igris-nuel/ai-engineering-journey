@@ -3,97 +3,64 @@
 
 In your own words:
 
-What does the else block of a loop actually mean?
-Why doesn't break allow the else block to execute?
-Why does continue still allow the else block to execute?
+Why is Counter more expressive than manually counting with a dictionary?
 
-## Exercise 2 — Predict the Output
+How does defaultdict differ from a normal dictionary?
 
-Without running the code, determine the output and explain why.
+Why is namedtuple easier to work with than a plain tuple?
 
-A
-    for x in [1, 2, 3]:
-        print(x)
-    else:
-        print("Finished")
+When would ChainMap be preferable to merging dictionaries?
 
-    for x in [1, 2, 3]:
+## Exercise 2 — Professional Code
 
-        if x == 2:
-            break
+Given:
 
-        print(x)
+from collections import Counter
 
-    else:
-        print("Finished")
-C
-    count = 1
+    languages = [
+        "Python",
+        "Go",
+        "Python",
+        "Rust",
+        "Go",
+        "Python",
+    ]
 
-    while count < 4:
-        print(count)
-        count += 1
-    else:
-        print("Done")
-D
-    count = 1
+Write code to:
 
-    while count < 4:
+Count the occurrences of each language.
 
-        if count == 2:
-            break
+Print the two most common languages.
 
-        print(count)
-        count += 1
+Print the count for "Go".
 
-    else:
-        print("Done")
+## Exercise 3 — Grouping Data
 
-Explain why the behavior differs from Exercise C.
+Given:
 
-## Exercise 3 — Write Code
-Program 1 — Search
+    employees = [
+        ("AI", "Alice"),
+        ("Backend", "Bob"),
+        ("AI", "Carol"),
+        ("Frontend", "Dave"),
+    ]
 
-Create a list:
+Use defaultdict(list) to produce:
 
-    students = ["Grace", "John", "Mary", "David"]
+    {
+        "AI": ["Alice", "Carol"],
+        "Backend": ["Bob"],
+        "Frontend": ["Dave"],
+    }
 
-Search for "Mary".
+## Exercise 4 — AI Engineering
 
-If found, print:
-Found Mary
+Suppose you're building an LLM evaluation pipeline. Millions of predictions are generated, each labeled "correct" or "incorrect".
 
-and stop searching with break.
+Explain:
 
-If the loop finishes without finding "Mary", print:
-Student not found
+Why is Counter a natural choice for tracking prediction counts?
 
-using the loop's else.
+Why might defaultdict(list) be useful for grouping prediction errors by category?
 
-Program 2 — Retry Login
-
-Write a loop that attempts a login 3 times.
-
-Assume a function:
-
-login_successful(attempt)
-
-returns True only on the third attempt.
-
-Use:
-
-    break when login succeeds.
-    Loop else to print:
-    Login failed
-
-only if all attempts fail.
-
-## Exercise 4 — AI Engineering Thinking
-
-You're writing an AI inference service that searches through a list of model servers to find one that is available.
-
-Conceptually explain:
-
-    Why for/else is a natural fit for this problem.
-    What break represents in this context.
-    What the loop's else represents.
-    Why this design is cleaner than maintaining a separate server_found boolean flag.
+Why do these specialized containers make production AI code easier to maintain than manually managing dictionaries?
