@@ -71,7 +71,35 @@ class Vector:
         if self.dimension != other.dimension:
             raise ValueError("Mismatch vectors")
 
-        return Vector([x+y for x, y in zip(self._values, other._values)])
+        return Vector([x+y for x, y in zip(self, other)])
+
+    def __mul__(self, scalar):
+        if not isinstance(scalar, (int, float)):
+            return NotImplemented
+        
+        return Vector([scalar * value for value in self._values])
+
+    __rmul__ = __mul__
+
+    def __sub__(self, other):
+        if not isinstance(other, Vector):
+            return NotImplemented
+        if self.dimension != other.dimension:
+            raise ValueError("vectors not matched")
+        
+        return Vector([x-y for x, y in zip(self, other)])
+
+    def __truediv__(self, scalar:float):
+        if not isinstance(scalar, (int, float)):
+            return NotImplemented
+        if scalar == 0:
+            raise ZeroDivisionError("Cannot divide a vector by zero.")
+        return Vector([value / scalar  for value in self._values])     
+
+    def __neg__(self):
+        return Vector([-x for x in self._values])
+
+    
 
 user = Vector([2, 5, 4, 10])
 
@@ -93,7 +121,8 @@ print(user.copy() == user)
 print(user.is_empty)
 
 
-u = Vector([2, 4,6,7])
+u = Vector([2,4,6,7])
 v = Vector([4, 6, 7, 8])
 
 print(u+v)
+print(5 * u)
