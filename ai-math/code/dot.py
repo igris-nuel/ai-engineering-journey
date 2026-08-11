@@ -138,6 +138,37 @@ class Vector:
         result = self.cosine_similarity(other)
 
         return math.degrees(math.acos(result))
+
+    def is_orthogonal(self, other) -> bool:
+        if not isinstance(other, Vector):
+            return NotImplemented
+
+        if self.dimension != other.dimension:
+            raise ValueError(
+                "Vectors must have the same dimension."
+            )
+
+        return self.dot(other) == 0
+
+    def project_unto(self, other):
+        if not isinstance(other, Vector):
+                    return NotImplemented
+        
+        if self.dimension != other.dimension:
+            raise ValueError(
+                "Vectors must have the same dimension."
+            )    
+
+        u = self.dot(other) * other
+
+        return  u/(other.norm() ** 2)
+
+    
+
+
+
+
+        
     
 
 
@@ -145,6 +176,11 @@ u = Vector([1, 2, 2])
 v = Vector([4, 0, 3])
 print(u.distance(v))
 print(u.cosine_similarity(v))
+
+u=Vector([3,4])
+v=Vector([1,0])
+
+print(u.project_unto(v))
 
 
 
