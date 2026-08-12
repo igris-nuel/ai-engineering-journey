@@ -163,6 +163,29 @@ class Vector:
 
         return  u/(other.norm() ** 2)
 
+    @staticmethod
+    def linear_comb(vectors:list["Vector"], scalar:list[float]) ->"Vector":
+        if len(vectors) != len(scalar):
+            raise ValueError(
+            "Number of vectors and coefficients must match."
+        ) 
+
+        if not vectors:
+            raise ValueError(
+                "At least one vector is required."
+            )
+
+        dimension = vectors[0].dimension
+
+        if any(dimension != v.dimension  for v in vectors):
+            raise ValueError("All vectors must have the same dimension.")
+
+        result = Vector([0] * dimension)
+
+        for vec, coefficient in zip(vectors, scalar):
+            result +=vec * coefficient
+    
+        return result
     
 
 
@@ -180,7 +203,12 @@ print(u.cosine_similarity(v))
 u=Vector([3,4])
 v=Vector([1,0])
 
+
 print(u.project_unto(v))
+u=Vector([1,2])
+v=Vector([3,1])
+
+print(Vector.linear_comb([u,v], [2,3]))
 
 
 
