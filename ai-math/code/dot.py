@@ -183,7 +183,7 @@ class Vector:
         result = Vector([0] * dimension)
 
         for vec, coefficient in zip(vectors, scalar):
-            result +=vec * coefficient
+            result = result + vec * coefficient
     
         return result
     
