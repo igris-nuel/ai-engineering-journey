@@ -77,10 +77,35 @@ class Matrix:
         Other_row, Other_column = other.shape
         self_row, self_column = self.shape
 
-        if self_row != Other_column:
-            raise ValueError("Matrices are completely incompatible for multiplication.")
+        if self_column != Other_row:
+            raise ValueError(f"Cannot multiply shape {self.shape} by shape {other.shape}. "
+        "Matrix A columns must match Matrix B rows.")
 
-        
+
+        transposed_other = [list(col) for col in zip(*other._rows)]
+
+       
+
+        return Matrix(
+            [
+                [sum(m*n for m,n in zip(x,y)) for y in transposed_other] for x in self._rows
+            ]
+        )
+
+    @classmethod
+    def identity(cls, size):
+        if size <= 0:
+            raise ValueError(
+                "Identity size must be positive."
+            )
+
+        return cls([
+            [
+                1 if i == j else 0
+                for j in range(size)
+            ]
+            for i in range(size)
+        ])
 
 
 
@@ -104,4 +129,4 @@ x = Vector([2, 3])
 
 print(A) 
 print(A.transpose()) 
-# print(A + B) 
+print(A @ B) 
