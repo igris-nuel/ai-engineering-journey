@@ -38,6 +38,6 @@ v = np.array([[1],[3]])
 
 # 2. Vector Addition
 w = np.array([[4],[-1]])
-# plot_vectors([v, w, v + w], [f"$v$", f"$w$", f"$v + w$"], ["black", "black", "red"])
+plot_vectors([v, w, v + w], [f"$v$", f"$w$", f"$v + w$"], ["black", "black", "red"])
 
 print("Norm of a vector v is", np.linalg.norm(v))
