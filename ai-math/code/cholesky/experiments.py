@@ -17,3 +17,16 @@ print(L)
 
 print("\nLL^T:")
 print(L @ L.T)
+print(np.allclose(L @ L.T, A))
+
+
+b = np.array([6.0, 7.0, 6.0])
+
+x1 = np.linalg.solve(A, b)
+
+y = np.linalg.solve(L,b)
+
+x2 = np.linalg.solve(L.T,y)
+
+print(np.allclose(x1, x2))
+
