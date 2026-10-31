@@ -1,4 +1,5 @@
 import math
+from _02_derivatives import derivative_x
 
 def linear_approximation(f, derivative, a, x):
     return f(a) + derivative(a) * (x - a)
@@ -7,13 +8,10 @@ def linear_approximation(f, derivative, a, x):
 def f(x):
     return math.sqrt(x)
 
-def derivative(x):
-    return 1 / (2 * math.sqrt(x))
-
 
 x= 4.1
 a=4
-approximation = linear_approximation(f, derivative, a, x)
+approximation = linear_approximation(f, derivative_x, a, x)
 
 actual = f(x)
 
@@ -35,7 +33,7 @@ x_values = [
 print("\n")
 
 for x in x_values:
-    appro= linear_approximation(f, derivative, a, x)
+    appro= linear_approximation(f, derivative_X, a, x)
     actual = f(x)
     error = abs(actual - appro)
 

@@ -1,36 +1,5 @@
-
-def f(x):
-    return x**2 - 4*x + 3
-
-
-def evaluate_function(f, x_values):
-    result = []
-
-    for x in x_values:
-        result.append((x, f(x)))
-
-    return result
-
-
-x_values = [-1, 0, 1, 2, 3, 4]
-
-results = evaluate_function(f, x_values)
-
-for x, y in results:
-    print(f"x = {x}, f(x) = {y}")
-
-
-def g(x):
-    return x**3 - 2*x
-
-gx_values = [-2,-1, 0,1,2]
-
-g_results = evaluate_function(g, gx_values)
-
-print(f"\n g results ")
-for x, y in g_results:
-    print(f" x = {x}, g(x) = {y}")
-
+import math
+from _01_functions import f
 
 # Numerical derivative
 
@@ -76,8 +45,18 @@ print("Forward:", forward)
 print("Central:", central)
 
 
-import math 
+def derivative_x(x):
+    return 1 / (2 * math.sqrt(x))
 
 
 
+def derivative_function(f, h=0.001):
+    def derivative(x):
+        return numerical_derivative_central(f, x, h)
+    return derivative
 
+def nth_derivative(f,n, h=0.001):
+    derivative=f
+    for _ in range(n):
+        derivative = derivative_function(derivative,h)
+    return derivative
